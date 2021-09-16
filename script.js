@@ -22,7 +22,6 @@ document.getElementById("color-picker").onchange = function() {
     color = this.value; 
 }
 
-
 //creates eventListener for mouseover and changes the background.
 let hoverPaint = document.getElementById("grid-container");
 hoverPaint.addEventListener("mouseover", function(event) {
@@ -32,9 +31,11 @@ hoverPaint.addEventListener("mouseover", function(event) {
 
 //removes all childs from gridContainer by clearing the innerHTML, then creates a grid with numbers from prompt.
 function changeGrid() {
+    numOfBlocksX = prompt("Enter number of columns");
+    numOfBlocksY = prompt("Enter number of rows");
     const removeInnerHtml = document.getElementById("grid-container");
     gridContainer.innerHTML = "";
-    createGrid(prompt("Enter number of columns"), prompt("Enter number of rows"));
+    createGrid(numOfBlocksX, numOfBlocksY);
 }
 
 //adds event listener so changeGrid is called on clicking button.
@@ -42,5 +43,4 @@ let changeGridClick = document.getElementById("grid-size-changer");
 changeGridClick.addEventListener("click", () => {
     changeGrid();
 });
-
 
