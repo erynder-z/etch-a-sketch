@@ -30,9 +30,18 @@ hoverPaint.addEventListener("mouseover", function(event) {
 
 
 //removes all childs from gridContainer by clearing the innerHTML, then creates a grid with numbers from prompt.
+//limits columns and rows max size to 100.
 function changeGrid() {
-    numOfBlocksX = prompt("Enter number of columns");
-    numOfBlocksY = prompt("Enter number of rows");
+    numOfBlocksX = prompt("Enter number of columns: (max: 100)");
+        if (numOfBlocksX > 100) {
+            alert("Number of columns is limited to 100");
+            numOfBlocksX = 100;
+        }
+    numOfBlocksY = prompt("Enter number of rows: (max: 100)");
+        if (numOfBlocksY > 100) {
+            alert("Number of rows is limited to 100");
+            numOfBlocksY = 100;
+        }
     const removeInnerHtml = document.getElementById("grid-container");
     gridContainer.innerHTML = "";
     createGrid(numOfBlocksX, numOfBlocksY);
