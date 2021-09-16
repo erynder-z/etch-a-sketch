@@ -13,10 +13,11 @@ function createGrid (numOfBlocksX, numOfBlocksY ) {
     }}
 }
 
+//the initial grid
 createGrid(16, 16);
 
 
-//grabs value from the color_picker and stores it in the color-variable.
+//grabs value from the color_picker and stores it in the color variable.
 let color = document.getElementById("color-picker").value;
 document.getElementById("color-picker").onchange = function() {
     color = this.value; 
@@ -29,7 +30,8 @@ hoverPaint.addEventListener("mouseover", function(event) {
 });
 
 
-//removes all childs from gridContainer by clearing the innerHTML, then creates a grid with numbers from prompt.
+//prompts for number of columns and rows.
+//removes all children from gridContainer (=deleting all blocks) by clearing the innerHTML, then creates a grid with numbers from prompt.
 //limits columns and rows max size to 100.
 function changeGrid() {
     numOfBlocksX = prompt("Enter number of columns: (max: 100)");
@@ -42,7 +44,7 @@ function changeGrid() {
             alert("Number of rows is limited to 100");
             numOfBlocksY = 100;
         }
-    const removeInnerHtml = document.getElementById("grid-container");
+    
     gridContainer.innerHTML = "";
     createGrid(numOfBlocksX, numOfBlocksY);
 }
@@ -53,3 +55,20 @@ changeGridClick.addEventListener("click", () => {
     changeGrid();
 });
 
+let smallGridClick = document.getElementById("small-size-button");
+smallGridClick.addEventListener("click", () => {
+    gridContainer.innerHTML = "";
+    createGrid(16, 16);
+});
+
+let mediumGridClick = document.getElementById("medium-size-button");
+mediumGridClick.addEventListener("click", () => {
+    gridContainer.innerHTML = "";
+    createGrid(32, 32);
+});
+
+let largeGridClick = document.getElementById("large-size-button");
+largeGridClick.addEventListener("click", () => {
+    gridContainer.innerHTML = "";
+    createGrid(64, 64);
+});
