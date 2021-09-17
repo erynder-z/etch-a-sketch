@@ -23,7 +23,19 @@ document.getElementById("color-picker").onchange = function() {
     color = this.value; 
 }
 
-//color the background of an element
+//pick random color
+function randomColor() {
+    let randCol = "#"+Math.floor(Math.random()*16777215).toString(16);
+    color = randCol;
+}
+
+let randomColorClick = document.getElementById("random-color");
+    randomColorClick.addEventListener("click", () => {
+    randomColor();
+});
+
+
+//color the background of an element with chosen color
 //must be a named function in order to remove the event listener from paintOnHover / paintOnClick later
 function paintBlock(event) {
     event.target.style.background = color;
@@ -44,6 +56,7 @@ function paintOnClick() {
     hoverPaint.removeEventListener("mouseover", paintBlock);
     clickPaint.addEventListener("mousedown", paintBlock);
 }
+
 
 //adds stop-painting functionality
 function deleteEventListeners() {
