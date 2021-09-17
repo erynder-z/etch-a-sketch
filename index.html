@@ -9,14 +9,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
     </head>
     <body>
+      <div id="grid-resize-container">
         <button id="small-size-button">16 x 16</button>
         <button id="medium-size-button">32 x 32</button>
         <button id="large-size-button">64 x 64</button>
         <button id="grid-size-changer">custom</button>
+      </div>
         <div id="grid-container"></div>
-        <div>
+        <div id="painter-container">
           <input type="color" id="color-picker" name="color-picker" value="#000000">
           <label for ="color-picker">Pick a color!</label>
+          <button id="paint-on-hover">paint-on-hover Mode</button>
+          <button id="paint-on-click">paint-on-click Mode</button>
         </div>
+        <h3>paint-on-hover Mode: Colorize blocks by hovering over them.</h3>
+        <h3>paint-on-click Mode: Colorize blocks by clicking them.</h3>
+        <h3>paint-on-hover Mode can be temporarily deactivated by holding down the "x" key!</h3>
     </body>
 </html>

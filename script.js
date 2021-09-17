@@ -23,12 +23,43 @@ document.getElementById("color-picker").onchange = function() {
     color = this.value; 
 }
 
-//creates eventListener for mouseover and changes the background.
-let hoverPaint = document.getElementById("grid-container");
-hoverPaint.addEventListener("mouseover", function(event) {
+//color the background of an element
+//must be a named function in order to remove the event listener from paintOnHover / paintOnClick later
+function paintBlock(event) {
     event.target.style.background = color;
-});
+}
 
+let hoverPaint = document.getElementById("grid-container");
+let clickPaint = document.getElementById("grid-container");
+
+
+//adds event listener and calls the paintBlock function
+function paintOnHover() {
+    clickPaint.removeEventListener("mousedown", paintBlock);
+    hoverPaint.addEventListener("mouseover", paintBlock);
+}
+
+//creates the paint-on-click mode
+function paintOnClick() {
+    hoverPaint.removeEventListener("mouseover", paintBlock);
+    clickPaint.addEventListener("mousedown", paintBlock);
+}
+
+//adds stop-painting functionality
+function deleteEventListeners() {
+    hoverPaint.removeEventListener("mouseover", paintBlock);
+    clickPaint.removeEventListener("mousedown", paintBlock);
+}
+window.onkeydown = function(event) {
+    if (event.keyCode == 88) {
+       deleteEventListeners();
+    }
+ }
+ window.onkeyup = function(event) {
+    if (event.keyCode == 88) {
+       paintOnHover();
+    }
+ }
 
 //prompts for number of columns and rows.
 //removes all children from gridContainer (=deleting all blocks) by clearing the innerHTML, then creates a grid with numbers from prompt.
@@ -55,6 +86,7 @@ changeGridClick.addEventListener("click", () => {
     changeGrid();
 });
 
+//grid template buttons
 let smallGridClick = document.getElementById("small-size-button");
 smallGridClick.addEventListener("click", () => {
     gridContainer.innerHTML = "";
@@ -71,4 +103,14 @@ let largeGridClick = document.getElementById("large-size-button");
 largeGridClick.addEventListener("click", () => {
     gridContainer.innerHTML = "";
     createGrid(64, 64);
+});
+
+let hoverPaintButton = document.getElementById("paint-on-hover");
+hoverPaintButton.addEventListener("click", () => {
+    paintOnHover();
+});
+
+let clickPaintButton = document.getElementById("paint-on-click");
+clickPaintButton.addEventListener("click", () => {
+    paintOnClick();
 });
