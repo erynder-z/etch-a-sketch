@@ -70,12 +70,16 @@ function deleteEventListeners() {
 window.onkeydown = function(event) {
     if (event.keyCode == 88) {
        deleteEventListeners();
-    
+    } else if (event.keyCode == 67) {
+        deleteEventListeners();
     }
  }
+
  window.onkeyup = function(event) {
     if (event.keyCode == 88) {
        paintOnHover();
+    } else if (event.keyCode == 67) {
+       paintOnHoverRainbow();
     }
  }
 
