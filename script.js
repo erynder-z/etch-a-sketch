@@ -24,6 +24,7 @@ document.getElementById("color-picker").onchange = function() {
 }
 
 //pick random color
+//takes a random number from all possible rgb values and converts it to hexadecimal
 function randomColor() {
     let randCol = "#"+Math.floor(Math.random()*16777215).toString(16);
     color = randCol;
@@ -58,14 +59,18 @@ function paintOnClick() {
 }
 
 
+
 //adds stop-painting functionality
 function deleteEventListeners() {
     hoverPaint.removeEventListener("mouseover", paintBlock);
     clickPaint.removeEventListener("mousedown", paintBlock);
+    hoverPaint.removeEventListener("mouseover", paintRainbow);
+    
 }
 window.onkeydown = function(event) {
     if (event.keyCode == 88) {
        deleteEventListeners();
+    
     }
  }
  window.onkeyup = function(event) {
@@ -73,6 +78,23 @@ window.onkeydown = function(event) {
        paintOnHover();
     }
  }
+
+
+ //raindow mode
+ function paintRainbow(event) {
+    event.target.style.background = "#"+Math.floor(Math.random()*16777215).toString(16);
+}
+
+function paintOnHoverRainbow() {
+    clickPaint.removeEventListener("mousedown", paintRainbow);
+    hoverPaint.addEventListener("mouseover", paintRainbow);
+}
+
+let rainbowPaintButton = document.getElementById("rainbow-mode");
+rainbowPaintButton.addEventListener("click", () => {
+    paintOnHoverRainbow();
+});
+
 
 //prompts for number of columns and rows.
 //removes all children from gridContainer (=deleting all blocks) by clearing the innerHTML, then creates a grid with numbers from prompt.
