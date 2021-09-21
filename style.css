@@ -2,29 +2,81 @@
 
 html {
     font-family: 'IBM Plex Mono', monospace;
-    background-color: #d3d9e8;
+    background-color: #EFE1CE;
 }
 
 :root{
     --grid-cols:1;
-    --grid-rows:1;   
+    --grid-rows:1;  
+}
+
+#main-wrapper {
+    display: grid;
+    justify-content: center;
+    justify-items: center;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 45% 45% 1fr 1fr;
+    margin-top: 10vh;
+    height: 75vh;
+}
+
+#grid-resize-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    grid-column-start: 1;
+    grid-column-end: 2;
+    padding-top: 1rem;
+    padding-bottom: 5rem;
+}
+#grid-resize-container > button {
+    margin: auto;
+}
+
+#painter-container {
+    display: flex;
+    flex-direction: column;
+    grid-column-start: 3;
+    grid-column-end: 4;
+    grid-row-start: 1;
+    grid-row-end: 3;
+    padding-top: 10rem;
+    padding-bottom: 10rem;
+  
+}
+
+#painter-container > button, input {
+    margin: auto;
+    justify-self: center;
+}
+
+#logo-container {
+  justify-self: center;
+
 }
 
 #grid-container {
     display: grid;
     grid-template-rows: repeat(var(--grid-rows),1fr);
     grid-template-columns: repeat(var(--grid-cols), 1fr);  
-    border-style: solid;
-    border-color: blue;
+    border: 33px solid #d6b88e;
+    border-radius: 33px;
     height: 60vh;
     width: 60vh;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 10vh;
+    margin-left: 1em;
+    justify-self: start;
+}
+
+#explanation-container {
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 4;
+    grid-row-start: 5;
+    justify-self: start;
 }
 
 .block {
-    border: 1px solid black;
+    border: 1px dotted #584f42;
     text-align: center;
     background: white;
   }

@@ -56,6 +56,8 @@ function paintOnHover() {
 function paintOnClick() {
     hoverPaint.removeEventListener("mouseover", paintBlock);
     clickPaint.addEventListener("mousedown", paintBlock);
+    hoverPaint.removeEventListener("mouseover", paintRainbow);
+    clickPaint.removeEventListener("mousedown", paintRainbow);
 }
 
 
@@ -65,6 +67,7 @@ function deleteEventListeners() {
     hoverPaint.removeEventListener("mouseover", paintBlock);
     clickPaint.removeEventListener("mousedown", paintBlock);
     hoverPaint.removeEventListener("mouseover", paintRainbow);
+    clickPaint.removeEventListener("mousedown", paintRainbow);
     
 }
 window.onkeydown = function(event) {
@@ -83,7 +86,6 @@ window.onkeydown = function(event) {
     }
  }
 
-
  //raindow mode
  function paintRainbow(event) {
     event.target.style.background = "#"+Math.floor(Math.random()*16777215).toString(16);
@@ -99,6 +101,18 @@ rainbowPaintButton.addEventListener("click", () => {
     paintOnHoverRainbow();
 });
 
+/* ADD LATER
+//grayscale mode
+function paintGray(event) {
+const grayscaleArray = ["#FFFFFF", "#DCDCDC", "#D3D3D3", "#C0C0C0", "#A9A9A9", "#696969", "#808080", "#778899", "#708090", "#2F4F4F", "#000000"];
+}
+
+function paintOnHoverGray() {
+    clickPaint.removeEventListener("mousedown", paintBlock);
+    hoverPaint.removeEventListener("mousedown", paintBlock);
+    hoverPaint.addEventListener("mouseover", paintGray);
+}
+*/
 
 //prompts for number of columns and rows.
 //removes all children from gridContainer (=deleting all blocks) by clearing the innerHTML, then creates a grid with numbers from prompt.
@@ -153,3 +167,10 @@ let clickPaintButton = document.getElementById("paint-on-click");
 clickPaintButton.addEventListener("click", () => {
     paintOnClick();
 });
+
+/* ADD LATER
+let grayscaleButton = document.getElementById("grayscale-mode");
+grayscaleButton.addEventListener("click", () => {
+    paintOnHoverGray();
+});
+*/

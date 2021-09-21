@@ -9,24 +9,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
     </head>
     <body>
+      <div id="main-wrapper">
+      <div id="logo-container">
+        <img src=logo.png alt="logo">
+      </div>
+        <div id="grid-container"></div>
+ 
       <div id="grid-resize-container">
         <button id="small-size-button">16 x 16</button>
         <button id="medium-size-button">32 x 32</button>
         <button id="large-size-button">64 x 64</button>
         <button id="grid-size-changer">custom</button>
       </div>
-        <div id="grid-container"></div>
         <div id="painter-container">
+          <div id="color-wrap">
           <input type="color" id="color-picker" name="color-picker" value="#000000">
-          <label for ="color-picker">pick a color!</label>
-          <button id="random-color">random color</button>
-          <button id="rainbow-mode">rainbow Mode</button>
-          <button id="paint-on-hover">paint-on-hover Mode</button>
-          <button id="paint-on-click">paint-on-click Mode</button>
+          <label for ="color-picker"></label>Pick a color!</label>
+          </div>
+          <button id="random-color">Random color</button>
+          <button id="rainbow-mode">Rainbow mode</button>
+          <button id="paint-on-hover">Paint-on-hover mode</button>
+          <button id="paint-on-click">Paint-on-click mode</button>
+          <!-- <button id="grayscale-mode">Grayscale mode</button> -->
         </div>
-        <h3>paint-on-hover Mode: Colorize blocks by hovering over them.</h3>
-        <h3>paint-on-click Mode: Colorize blocks by clicking them.</h3>
-        <h3>paint-on-hover Mode can be temporarily deactivated by holding down the "x" key!</h3>
-        <h3>rainbow mode can be temporarily deactivated by holding down the "c" key!</h3>
+        <div id="explanation-container">
+        <h3>Paint-on-hover mode: Colorize blocks by hovering over them.</h3>
+        <h3>Paint-on-click mode: Colorize blocks by clicking them.</h3>
+        <h3>Paint-on-hover mode can be temporarily deactivated by holding down the "x" key!</h3>
+        <h3>Rainbow mode can be temporarily deactivated by holding down the "c" key!</h3>
+      </div>
+      </div>
     </body>
 </html>
