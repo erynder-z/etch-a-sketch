@@ -16,27 +16,31 @@
         <div id="grid-container"></div>
  
       <div id="grid-resize-container">
-        <button id="small-size-button">16 x 16</button>
-        <button id="medium-size-button">32 x 32</button>
-        <button id="large-size-button">64 x 64</button>
-        <button id="grid-size-changer">custom</button>
+        <div>GRID DENSITY</div>
+        <button class="button_toggle_G activeG" id="small-size-button">16 x 16</button>
+        <button class="button_toggle_G" id="medium-size-button">32 x 32</button>
+        <button class="button_toggle_G" id="large-size-button">64 x 64</button>
+        <button class="button_toggle_G" id="grid-size-changer">custom</button>
       </div>
         <div id="painter-container">
+          <div>PAINT OPTIONS</div>
           <div id="color-wrap">
           <input type="color" id="color-picker" name="color-picker" value="#000000">
-          <label for ="color-picker"></label>Pick a color!</label>
+          <label for ="color-picker">color</label>
           </div>
-          <button id="random-color">Random color</button>
-          <button id="rainbow-mode">Rainbow mode</button>
-          <button id="paint-on-hover">Paint-on-hover mode</button>
-          <button id="paint-on-click">Paint-on-click mode</button>
+          <button class="button" id="random-color">Random color</button>
+          <button class="button_toggle_P" id="paint-on-hover">Paint-on-hover mode</button>
+          <button class="button_toggle_P activeP" id="paint-on-click">Paint-on-click mode</button>
+          
+          <button class="button" id="rainbow-mode">Rainbow mode</button>
           <!-- <button id="grayscale-mode">Grayscale mode</button> -->
         </div>
         <div id="explanation-container">
-        <h3>Paint-on-hover mode: Colorize blocks by hovering over them.</h3>
-        <h3>Paint-on-click mode: Colorize blocks by clicking them.</h3>
-        <h3>Paint-on-hover mode can be temporarily deactivated by holding down the "x" key!</h3>
-        <h3>Rainbow mode can be temporarily deactivated by holding down the "c" key!</h3>
+        <h2>INFO</h3>
+        <p>PAINT-ON-HOVER MODE: Colorize blocks by hovering over them.<br>
+        PAINT-ON-CLICK MODE: Colorize blocks by clicking them.</p>
+        <p>PAINT-ON-HOVER MODE can be temporarily deactivated by holding down the "X" key!<br>
+        RAINBOW MODE can be temporarily deactivated by holding down the "C" key!</p>
       </div>
       </div>
     </body>

@@ -174,3 +174,29 @@ grayscaleButton.addEventListener("click", () => {
     paintOnHoverGray();
 });
 */
+
+/* ADD LATER
+ERASER
+*/
+
+//classes for the buttons
+let temp1 = document.getElementById("painter-container")
+let buttons1 = temp1.getElementsByClassName("button_toggle_P");
+for (let i = 0; i < buttons1.length; i++) {
+    buttons1[i].addEventListener("click", function() {
+        let current1 = document.getElementsByClassName("activeP");
+        current1[0].className = current1[0].className.replace(" activeP", "");
+        this.className += " activeP";
+    });
+} 
+let temp2 = document.getElementById("grid-resize-container")
+let buttons2 = temp2.getElementsByClassName("button_toggle_G");
+for (let i = 0; i < buttons2.length; i++) {
+    buttons2[i].addEventListener("click", function() {
+        let current2 = document.getElementsByClassName("activeG");
+        current2[0].className = current2[0].className.replace(" activeG", "");
+        this.className += " activeG";
+    });
+}
+
+paintOnClick();
