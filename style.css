@@ -79,7 +79,7 @@ html {
 .block {
     border: 1px dotted #584f42;
     text-align: center;
-    background: white;
+    background: #FFFFFF;
   }
 
   .button, .button_toggle_P, .button_toggle_G {

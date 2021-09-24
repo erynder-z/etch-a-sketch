@@ -101,18 +101,38 @@ rainbowPaintButton.addEventListener("click", () => {
     paintOnHoverRainbow();
 });
 
-/* ADD LATER
-//grayscale mode
-function paintGray(event) {
-const grayscaleArray = ["#FFFFFF", "#DCDCDC", "#D3D3D3", "#C0C0C0", "#A9A9A9", "#696969", "#808080", "#778899", "#708090", "#2F4F4F", "#000000"];
-}
+// grayscale shade mode
+// get the RBG values from the current block and returns the numbers
+// need to work with rgb values to make this method work
+// will only work on white background since "default" color format is hex, so first pass will always result in rgb(255,255,255)
+function getRGBValues(RGBString) {
+    let red = RGBString.substring(RGBString.indexOf('(') + 1, RGBString.indexOf(','));
+    if (!red) {red = 255;}
 
+    let green = RGBString.substring(RGBString.indexOf(',') + 2, RGBString.lastIndexOf(','));
+    if (!green) {green = 255;}
+
+    let blue = RGBString.substring(RGBString.lastIndexOf(',') + 2, RGBString.indexOf(')'));
+    if (!blue) {blue = 255;}
+    
+    return [Number(red), Number(green), Number(blue)];
+}
+//multiplies the old RGB values with 0.2 to darken
+function paintGray(event) {
+    let oldColor = event.target.style.backgroundColor;
+    let oldRGBValues = getRGBValues(oldColor);
+    let red = oldRGBValues[0], green = oldRGBValues[1], blue = oldRGBValues[2];
+        red = red - Math.ceil(red * 0.2);
+        green = green - Math.ceil(green * 0.2);
+        blue = blue - Math.ceil(blue * 0.2);
+        event.target.style.backgroundColor = `rgb(${red}, ${green}, ${blue})`;
+   }
 function paintOnHoverGray() {
     clickPaint.removeEventListener("mousedown", paintBlock);
     hoverPaint.removeEventListener("mousedown", paintBlock);
     hoverPaint.addEventListener("mouseover", paintGray);
 }
-*/
+
 
 //prompts for number of columns and rows.
 //removes all children from gridContainer (=deleting all blocks) by clearing the innerHTML, then creates a grid with numbers from prompt.
@@ -168,12 +188,12 @@ clickPaintButton.addEventListener("click", () => {
     paintOnClick();
 });
 
-/* ADD LATER
+
 let grayscaleButton = document.getElementById("grayscale-mode");
 grayscaleButton.addEventListener("click", () => {
     paintOnHoverGray();
 });
-*/
+
 
 /* ADD LATER
 ERASER
