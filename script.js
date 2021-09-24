@@ -1,9 +1,15 @@
+// CREATE GRID FUNCTIONALITY
 //creates a given number of blocks and adds either the property --grid-rows or --grid-columns to the block.
 //creates x*y number of blocks and puts the items in the grid-container div.
 //actual grid (x- and y-axis) arrangement is managed by css via the --grid-rows / --grid-columns property that has been set to the boxes.
 const gridContainer = document.getElementById("grid-container");
 
-function createGrid (numOfBlocksX, numOfBlocksY ) {
+let clearGridValueX; //needed for passing values into clearGrid function
+let clearGridValueY;
+
+function createGrid (numOfBlocksX, numOfBlocksY) {
+    clearGridValueX = numOfBlocksX; 
+    clearGridValueY = numOfBlocksY;
     gridContainer.style.setProperty("--grid-rows", numOfBlocksY);
     gridContainer.style.setProperty("--grid-cols", numOfBlocksX);
     for (let i = 0; i < numOfBlocksX; i++ ) {
@@ -13,17 +19,17 @@ function createGrid (numOfBlocksX, numOfBlocksY ) {
     }}
 }
 
-//the initial grid
+// CREATES INITIAL GRID
 createGrid(16, 16);
 
-
+// COLOR CHOOSER FUNCTIONALITY
 //grabs value from the color_picker and stores it in the color variable.
 let color = document.getElementById("color-picker").value;
 document.getElementById("color-picker").onchange = function() {
     color = this.value; 
 }
 
-//pick random color
+// RANDOM COLOR FUNCTIONALITY
 //takes a random number from all possible rgb values and converts it to hexadecimal
 function randomColor() {
     let randCol = "#"+Math.floor(Math.random()*16777215).toString(16);
@@ -35,7 +41,7 @@ let randomColorClick = document.getElementById("random-color");
     randomColor();
 });
 
-
+// BASIC COLORING FUNCTIONALITY
 //color the background of an element with chosen color
 //must be a named function in order to remove the event listener from paintOnHover / paintOnClick later
 function paintBlock(event) {
@@ -46,54 +52,50 @@ let hoverPaint = document.getElementById("grid-container");
 let clickPaint = document.getElementById("grid-container");
 
 
-//adds event listener and calls the paintBlock function
+//PAINT ON HOVER MODE
 function paintOnHover() {
     clickPaint.removeEventListener("mousedown", paintBlock);
+    hoverPaint.removeEventListener("mousedown", paintRainbow);
+    hoverPaint.removeEventListener("mouseover", paintGray);
     hoverPaint.addEventListener("mouseover", paintBlock);
 }
 
-//creates the paint-on-click mode
+//PAINT ON CLICK MODE 
 function paintOnClick() {
     hoverPaint.removeEventListener("mouseover", paintBlock);
     clickPaint.addEventListener("mousedown", paintBlock);
     hoverPaint.removeEventListener("mouseover", paintRainbow);
     clickPaint.removeEventListener("mousedown", paintRainbow);
+    hoverPaint.removeEventListener("mouseover", paintGray);
+    hoverPaint.removeEventListener("mouseover", eraseColor);
 }
 
-
-
-//adds stop-painting functionality
+//STOP PAINTING ON KEYPRESS FUNCTIONALITY
 function deleteEventListeners() {
     hoverPaint.removeEventListener("mouseover", paintBlock);
-    clickPaint.removeEventListener("mousedown", paintBlock);
+    hoverPaint.removeEventListener("mouseover", paintGray);
     hoverPaint.removeEventListener("mouseover", paintRainbow);
+    clickPaint.removeEventListener("mousedown", paintBlock);
     clickPaint.removeEventListener("mousedown", paintRainbow);
-    
 }
-window.onkeydown = function(event) {
-    if (event.keyCode == 88) {
-       deleteEventListeners();
-    } else if (event.keyCode == 67) {
-        deleteEventListeners();
-    }
- }
 
+
+// KEYS
  window.onkeyup = function(event) {
     if (event.keyCode == 88) {
-       paintOnHover();
-    } else if (event.keyCode == 67) {
-       paintOnHoverRainbow();
-    }
+       deleteEventListeners();
  }
+}
 
- //raindow mode
+ //RAINBOW MODE FUNCTIONALITY
  function paintRainbow(event) {
     event.target.style.background = "#"+Math.floor(Math.random()*16777215).toString(16);
 }
 
 function paintOnHoverRainbow() {
     clickPaint.removeEventListener("mousedown", paintRainbow);
-    hoverPaint.addEventListener("mouseover", paintRainbow);
+    hoverPaint.removeEventListener("mouseover", paintBlock);
+    hoverPaint.addEventListener("mouseover", paintRainbow);  
 }
 
 let rainbowPaintButton = document.getElementById("rainbow-mode");
@@ -101,7 +103,7 @@ rainbowPaintButton.addEventListener("click", () => {
     paintOnHoverRainbow();
 });
 
-// grayscale shade mode
+// SHADING MODE FUNCTIONALITY
 // get the RBG values from the current block and returns the numbers
 // need to work with rgb values to make this method work
 // will only work on white background since "default" color format is hex, so first pass will always result in rgb(255,255,255)
@@ -119,6 +121,7 @@ function getRGBValues(RGBString) {
 }
 //multiplies the old RGB values with 0.2 to darken
 function paintGray(event) {
+    
     let oldColor = event.target.style.backgroundColor;
     let oldRGBValues = getRGBValues(oldColor);
     let red = oldRGBValues[0], green = oldRGBValues[1], blue = oldRGBValues[2];
@@ -129,11 +132,27 @@ function paintGray(event) {
    }
 function paintOnHoverGray() {
     clickPaint.removeEventListener("mousedown", paintBlock);
-    hoverPaint.removeEventListener("mousedown", paintBlock);
+    hoverPaint.removeEventListener("mousedown", paintBlock); 
+    hoverPaint.removeEventListener("mouseover", paintRainbow);
+    hoverPaint.removeEventListener("mouseover", paintBlock);
+    hoverPaint.removeEventListener("mouseover", eraseColor);
     hoverPaint.addEventListener("mouseover", paintGray);
 }
 
+function eraseColor(event) {
+    event.target.style.backgroundColor = "#FFFFFF";
+}
 
+function eraserMode() {
+    clickPaint.removeEventListener("mousedown", paintBlock);
+    hoverPaint.removeEventListener("mousedown", paintBlock);
+    hoverPaint.removeEventListener("mouseover", paintGray);
+    hoverPaint.removeEventListener("mouseover", paintRainbow);
+    hoverPaint.removeEventListener("mouseover", paintBlock);
+    hoverPaint.addEventListener("mouseover", eraseColor);
+}
+
+//CUSTOM GRID SIZE FUNCTIONALITY
 //prompts for number of columns and rows.
 //removes all children from gridContainer (=deleting all blocks) by clearing the innerHTML, then creates a grid with numbers from prompt.
 //limits columns and rows max size to 100.
@@ -159,7 +178,7 @@ changeGridClick.addEventListener("click", () => {
     changeGrid();
 });
 
-//grid template buttons
+//GRID TEMPLATE SIZE BUTTONS FUNCTIONALITY
 let smallGridClick = document.getElementById("small-size-button");
 smallGridClick.addEventListener("click", () => {
     gridContainer.innerHTML = "";
@@ -194,12 +213,19 @@ grayscaleButton.addEventListener("click", () => {
     paintOnHoverGray();
 });
 
+let eraserButton = document.getElementById("eraser-button");
+eraserButton.addEventListener("click", () => {
+    eraserMode();
+});
 
-/* ADD LATER
-ERASER
-*/
+let clearGridButton = document.getElementById("clear-grid-button");
+clearGridButton.addEventListener("click", () => {
+    gridContainer.innerHTML = "";
+    createGrid(clearGridValueX, clearGridValueY);
+});
 
-//classes for the buttons
+
+//ADDING CLASSES TO BUTTONS TO HIGHLIGHT SELECTED MODE
 let temp1 = document.getElementById("painter-container")
 let buttons1 = temp1.getElementsByClassName("button_toggle_P");
 for (let i = 0; i < buttons1.length; i++) {
@@ -219,4 +245,5 @@ for (let i = 0; i < buttons2.length; i++) {
     });
 }
 
-paintOnClick();
+//DEFAULT MODE
+paintOnHover();

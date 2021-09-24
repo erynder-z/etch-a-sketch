@@ -119,6 +119,10 @@ html {
     transition: all 0.5s;
 }
 
+#eraser-button {
+ Margin-bottom: 2rem;
+}
+
 .activeP, .activeG, .button:hover, .button_toggle_P:hover, .button_toggle_G:hover, #color-wrap:hover {
     transform: scale(1.1);
     background: #39603D;

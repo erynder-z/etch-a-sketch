@@ -20,27 +20,29 @@
         <button class="button_toggle_G activeG" id="small-size-button">16 x 16</button>
         <button class="button_toggle_G" id="medium-size-button">32 x 32</button>
         <button class="button_toggle_G" id="large-size-button">64 x 64</button>
-        <button class="button_toggle_G" id="grid-size-changer">custom</button>
+        <button class="button_toggle_G" id="grid-size-changer">custom size</button>
+        <button class="button" id="clear-grid-button">clear grid</button>
       </div>
         <div id="painter-container">
           <div>PAINT OPTIONS</div>
+        
           <div id="color-wrap">
           <input type="color" id="color-picker" name="color-picker" value="#000000">
           <label for ="color-picker">color</label>
           </div>
           <button class="button" id="random-color">Random color</button>
-          <button class="button_toggle_P" id="paint-on-hover">Paint-on-hover mode</button>
-          <button class="button_toggle_P activeP" id="paint-on-click">Paint-on-click mode</button>
+          <button class="button_toggle_P" id="eraser-button">Eraser</button>
           
-          <button class="button" id="rainbow-mode">Rainbow mode</button>
-          <button class="button" id="grayscale-mode">Grayscale shade mode</button> 
+          <button class="button_toggle_P activeP" id="paint-on-hover">Default mode</button>
+          <button class="button_toggle_P" id="rainbow-mode">Rainbow mode</button>
+          <button class="button_toggle_P" id="grayscale-mode">Shading mode</button> 
+          <button class="button_toggle_P" id="paint-on-click">Paint-on-click mode</button>
         </div>
         <div id="explanation-container">
         <h2>INFO</h3>
         <p>PAINT-ON-HOVER MODE: Colorize blocks by hovering over them.<br>
-        PAINT-ON-CLICK MODE: Colorize blocks by clicking them.</p>
-        <p>PAINT-ON-HOVER MODE can be temporarily deactivated by holding down the "X" key!<br>
-        RAINBOW MODE can be temporarily deactivated by holding down the "C" key!</p>
+        PAINT-ON-CLICK MODE: Colorize single blocks by clicking them.</p>
+        <p>Stop painting by pressing the "X" key on your keyboard!</p>
       </div>
       </div>
     </body>
