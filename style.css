@@ -16,7 +16,7 @@ html {
     justify-items: center;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 45% 45% 10%;
-    margin-top: 5vh;
+    margin-top: 3vh;
     height: 75vh;
 }
 
@@ -73,7 +73,8 @@ html {
     grid-row-end: 5;
     justify-self: start;
     margin-left: 10px;
-    margin-top: 2em;     
+   
+
 }
 
 .block {
@@ -185,3 +186,4 @@ html {
     }
     }
 
+ 
