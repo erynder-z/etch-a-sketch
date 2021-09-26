@@ -246,4 +246,4 @@ for (let i = 0; i < buttons2.length; i++) {
 }
 
 //DEFAULT MODE
-paintOnHover();
+paintOnClick();

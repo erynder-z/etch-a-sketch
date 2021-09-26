@@ -129,3 +129,59 @@ html {
     color: white;
 }
 
+
+    @media (max-width: 75em) {
+        :root {
+        scale: 0.65;
+    }
+    }
+
+
+    @media (max-width: 75em) {
+        body {
+           position: absolute;
+           left: 50%;
+           transform: translate(-50%); 
+    }
+    }
+
+    @media (max-width: 75em) {
+        #main-wrapper {
+        display: flow-root;
+        float: inline-start; 
+    }
+    }
+
+    @media (max-width: 75em) {
+        #logo-container {
+         text-align: center;
+         padding-bottom: 1rem;
+    }
+    }
+   
+    @media (max-width: 75em) {
+            #painter-container {
+             padding-top: 2rem;
+             position: absolute;
+             right: 20%;
+             transform: translate(50%); 
+    }
+    }
+
+    @media (max-width: 75em) {
+        #grid-resize-container {
+            padding-top: 2rem;
+            position: absolute;
+            left: 20%;
+            transform: translate(-50%); 
+    }
+    }
+
+@media (max-width: 75em) {
+    #explanation-container {
+        position: relative;
+        bottom: -27.5rem;
+        
+    }
+    }
+
